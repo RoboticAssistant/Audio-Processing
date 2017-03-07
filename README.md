@@ -1,5 +1,4 @@
-
-We are implementing threading based application to avoid delays in the functionality. We’ll have 3 threads in our main application which are as follows:
+We are implementing threading based application to avoid delays in the functionality. We’ll have 3 threads in our main application which are as follows:-
 
 
 Thread 1: (Hearing Thread)
