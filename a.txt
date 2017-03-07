@@ -1,0 +1,13 @@
+gcc -o test test.c -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\" `pkg-config --cflags --libs pocketsphinx sphinxbase`
+
+arecord -Dhw:sndrpiwsp -r 16000 -c 2 -d 4 -f S16_LE test.wav
+
+pocketsphinx_continuous -infile test_converted.wav
+
+
+pocketsphinx_continuous -inmic yes -adcdev plughw:DEV=0,CARD=1
+
+
+pocketsphinx_continuous -inmic yes -adcdev plughw:DEV=0,CARD=1 -keyphrase "Hello Tubby" -kws_threshold 1e-20
+
+pocketsphinx_continuous -inmic yes -adcdev plughw:1,0 -keyphrase "Hey Tubby" -kws_threshold 1e-20
