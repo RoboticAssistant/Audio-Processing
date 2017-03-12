@@ -1,23 +1,46 @@
-#include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <sys/syscall.h>
+#include "tts.h"
 
 pthread_t t1,t2,t3;
+char *transmit, receive[200];
 
 void  *STT(void *arg)
 {
-	while(1)
-	{
-		printf("Hello1\n");
-		sleep(1);
-	}
+
+/*******Initialize*******/	
+	system("./Record_from_Headset.sh");
+
+/*******Run*******/
+	system("pocketsphinx_continuous -inmic yes -adcdev plughw:DEV=0,CARD=1");
+	//transmit = hyp;
 }
 
 void  *TTS(void *arg)
 {
+
+/*******Initialize*******/
+ 	system("./Playback_to_Headset.sh");
+	
+	sprintf(receive,"Hi! I am Tubby");
+
+/*******Run*******/
+	int i;	
 	while(1)
 	{
-		printf("Hello2\n");
+		if(*receive)
+		{
+			make_audio(receive);
+			play_audio();
+			sprintf(receive,"");	
+		}
+		else
+		{
+			scanf("%d",&i);
+			sprintf(receive,"%d",i);
+		}
+
 		sleep(1);
 	}
 }
@@ -26,7 +49,7 @@ void  *PLOT(void *arg)
 {
 	while(1)
 	{
-		printf("Hello3\n");
+		//printf("Hello3\n");
 		sleep(1);
 	}
 }

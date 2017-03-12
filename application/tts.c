@@ -1,15 +1,9 @@
-#include <unistd.h>
-#include <sys/syscall.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define SIZE_OF_HEADER 44
+#include "tts.h"
 
 void single_channel_wav_to_dual_channel_raw()
 {
- char* wav_filename = "test.wav";
- char* raw_filename = "test.raw"; 
+ char* wav_filename = "temp/test.wav";
+ char* raw_filename = "temp/test.raw"; 
 
  char* header;
  char* data;
@@ -30,8 +24,6 @@ void single_channel_wav_to_dual_channel_raw()
  if(!(read = fread(header, SIZE_OF_HEADER, 1, ptr)))
   printf("File is empty..\n");
 
- //printf("(1-44): %s \n", header); 
- 
  FILE *ptr_raw = fopen(raw_filename,"w");
 
  if (ptr_raw == NULL) 
@@ -54,25 +46,15 @@ void single_channel_wav_to_dual_channel_raw()
 
 }
 
-void get_text()
+void make_audio(char* text)
 {
- char* text = "Hi! I am Tubby";
- char command[200];
-
- sprintf(command,"pico2wave -w test.wav \"%s\"",text);
- puts(command);
- system(command);
+	char command[200];
+	sprintf(command,"pico2wave -w temp/test.wav \"%s\"",text);
+	system(command);
+	single_channel_wav_to_dual_channel_raw();
 }
 
 void play_audio()
 {
- system("./Playback_to_Headset.sh");
-}
-
-int main()
-{
- get_text();
- single_channel_wav_to_dual_channel_raw();
- play_audio();
- return 0;
+	system("aplay -Dhw:sndrpiwsp -r 16000 -c 2 -f S16_LE temp/test.raw");
 }
