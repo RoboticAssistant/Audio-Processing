@@ -13,8 +13,8 @@ void  *STT(void *arg)
 	system("./Record_from_Headset.sh");
 
 /*******Run*******/
-	system("pocketsphinx_continuous -inmic yes -adcdev plughw:DEV=0,CARD=1");
-	//transmit = hyp;
+	//system("pocketsphinx_continuous -inmic yes -adcdev plughw:DEV=0,CARD=1");
+	stt_continuous();
 }
 
 void  *TTS(void *arg)

@@ -321,6 +321,7 @@ recognize_from_microphone()
     uint8 utt_started, in_speech;
     int32 k;
     char const *hyp;
+printf("aaaaaaaaaaaaaaaaaaaaaaaa: %s",cmd_ln_str_r(config, "-adcdev"));
 
     if ((ad = ad_open_dev(cmd_ln_str_r(config, "-adcdev"),
                           (int) cmd_ln_float32_r(config,
