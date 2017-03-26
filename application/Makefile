@@ -1,2 +1,2 @@
 audio_processing: audio_processing.c tts.c stt.c
-	gcc -pthread -o audio_processing audio_processing.c tts.c stt.c -I. -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\" `pkg-config --cflags --libs pocketsphinx sphinxbase`
+	g++ -g -pthread -o audio_processing1 audio_processing.c tts.c stt.c -I. -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\" `pkg-config --cflags --libs pocketsphinx sphinxbase`

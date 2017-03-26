@@ -56,7 +56,7 @@ void single_channel_wav_to_dual_channel_raw()
 
 void get_text()
 {
- char* text = "Hi! I am Tubby";
+ char* text = "Hello World!";
  char command[200];
 
  sprintf(command,"pico2wave -w test.wav \"%s\"",text);

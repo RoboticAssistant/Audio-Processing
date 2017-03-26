@@ -6,7 +6,7 @@ import wave
 import sys
 
 
-spf = wave.open('test.wav','r')
+spf = wave.open('mono.wav','r')
 
 signal = spf.readframes(-1)
 signal = np.fromstring(signal, 'Int16')

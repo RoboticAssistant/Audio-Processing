@@ -2,8 +2,8 @@
 
 void single_channel_wav_to_dual_channel_raw()
 {
- char* wav_filename = "temp/test.wav";
- char* raw_filename = "temp/test.raw"; 
+ char* wav_filename = (char*)"temp/test.wav";
+ char* raw_filename = (char*)"temp/test.raw"; 
 
  char* header;
  char* data;
