@@ -81,7 +81,7 @@ void  *PUBSUB(void *arg)
 	{
 		if(text_detected)
 		{
-			printf("pubsub: %s", text_detected);
+			printf("pubsub: %s\n", text_detected);
 
 			//publish to topics
 
