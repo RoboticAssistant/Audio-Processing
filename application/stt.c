@@ -15,13 +15,18 @@ static void sleep_msec(int32 ms)
     select(0, NULL, NULL, NULL, &tmo);
 }
 
+
+// "-lm", MODELDIR "/en-us/en-us.lm.bin",
+// "-dict", MODELDIR "/en-us/cmudict-en-us.dict",
+
 int stt_init()
 {
     config = cmd_ln_init(NULL, ps_args(), TRUE,
                  "-hmm", MODELDIR "/en-us/en-us",
-                 "-lm", MODELDIR "/en-us/en-us.lm.bin",
-                 "-dict", MODELDIR "/en-us/cmudict-en-us.dict",
+                 "-lm", "/home/pi/Audio-Processing/application/voice_cmd.lm",
+                 "-dict","/home/pi/Audio-Processing/application/voice_cmd.dic",
                  NULL);
+
     if (config == NULL) {
         fprintf(stderr, "Failed to create config object, see log for details\n");
         return -1;
